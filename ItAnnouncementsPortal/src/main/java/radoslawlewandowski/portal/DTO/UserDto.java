@@ -41,7 +41,7 @@ public class UserDto {
 
     private int active;
 
-    private List<RoleDto> roles;
+    private Set<RoleDto> roles;
 
     private int nrRoli;
 

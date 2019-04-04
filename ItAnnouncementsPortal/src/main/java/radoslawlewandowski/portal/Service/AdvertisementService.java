@@ -38,7 +38,7 @@ public class AdvertisementService {
                 .dateOfAddition(new Date())
                 .programmingLanguages(programmingLanguageService.findByIdIn(saveAdvertisementDto.getProgrammingLanguages()))
                 .experienceLevel(experienceLevelService.getExperienceLevel(saveAdvertisementDto.getExperienceLevel()))
-                .user(userService.getLoggedEmployee())
+               // .user(userService.getLoggedEmployee())
                 .build();
 
         advertisementRepository.save(advertisement);
@@ -49,9 +49,9 @@ public class AdvertisementService {
         return getAdvertisementDto(advertisement);
     }
 
-    public List<AdvertisementDto> findByUserId(UUID id) {
+   /* public List<AdvertisementDto> findByUserId(UUID id) {
         return findAllAdvertisementDto(advertisementRepository.findAdvertisementsByUser_Id(id));
-    }
+    }*/
 
     @PreAuthorize("#advertisement.user.email == authentication.name or hasRole('ROLE_ADMIN')")
     public void deleteAdvertisementById(AdvertisementDto advertisement){
@@ -89,7 +89,7 @@ public class AdvertisementService {
                 .dateOfAddition(advertisementDto.getDateOfAddition())
                 .programmingLanguages(advertisementDto.getProgrammingLanguages())
                 .experienceLevel(experienceLevelService.getExperienceLevel(advertisementDto.getExperienceLevel()))
-                .user(userService.getUser(advertisementDto.getUser()))
+               // .user(userService.getUser(advertisementDto.getUser()))
                 .build();
     }
 
@@ -104,7 +104,7 @@ public class AdvertisementService {
                 .dateOfAddition(advertisement.getDateOfAddition())
                 .programmingLanguages(advertisement.getProgrammingLanguages())
                 .experienceLevel(experienceLevelService.getExperienceLevelDto(advertisement.getExperienceLevel()))
-                .user(userService.getUserDto(advertisement.getUser()))
+               // .user(userService.getUserDto(advertisement.getUser()))
                 .build();
     }
 

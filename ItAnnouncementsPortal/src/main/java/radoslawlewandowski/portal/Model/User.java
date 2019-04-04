@@ -48,10 +48,7 @@ public class User {
             CascadeType.REFRESH,
             CascadeType.PERSIST})
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
-
-    @OneToMany(mappedBy = "user", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private List<Advertisement> advertisements;
+    private Set<Role> roles;
 
     @Transient
     private int nrRoli;
@@ -65,13 +62,4 @@ public class User {
     protected User(){
 
     }
-    public User(String name, String lastName, String email, String password, int active, List<Role> roles) {
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.active = active;
-        this.roles = roles;
-    }
-
 }

@@ -30,7 +30,7 @@ public class RoleService {
         return listId;
     }
 
-    public List<Role> findByIdIn(List<Integer> listId) {
+    public Set<Role> findByIdIn(Set<Integer> listId) {
         return roleRepository.findByIdIn(listId);
     }
 
@@ -47,16 +47,16 @@ public class RoleService {
                 .build();
     }
 
-    public List<Role> getRoles(List<RoleDto> roleDtos) {
-        List<Role> roles = new ArrayList<>();
+    public Set<Role> getRoles(Set<RoleDto> roleDtos) {
+        Set<Role> roles = new HashSet<>();
         for (RoleDto roleDto : roleDtos) {
             roles.add(getRole(roleDto));
         }
         return roles;
     }
 
-    public List<RoleDto> getRolesDto(List<Role> roleList) {
-        List<RoleDto> roles = new ArrayList<>();
+    public Set<RoleDto> getRolesDto(Set<Role> roleList) {
+        Set<RoleDto> roles = new HashSet<>();
         for (Role role : roleList) {
             roles.add(getRoleDto(role));
         }

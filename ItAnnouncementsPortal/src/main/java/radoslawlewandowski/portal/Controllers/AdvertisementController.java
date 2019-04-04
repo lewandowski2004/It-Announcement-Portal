@@ -68,13 +68,13 @@ public class AdvertisementController {
         return advertisementService.findAllAdvertisementsDtoByCity(city);
     }
 
-    @GetMapping("/my-advertisements")
+   /* @GetMapping("/my-advertisements")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     List<AdvertisementDto> allAdvertisementsByUserId() {
         UserDto userDto = userService.getLoggedEmployeeDto();
         return advertisementService.findByUserId(userDto.getId());
     }
-
+*/
     @GetMapping("/advertisement/{id}")
     AdvertisementDto getAdvertisement(
             @PathVariable Long id) {

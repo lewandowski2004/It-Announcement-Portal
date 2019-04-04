@@ -13,7 +13,7 @@ package radoslawlewandowski.portal.Model;
 @Getter
 @Setter
 @Entity
-//@Table(name = "advertisement")
+@Table(name = "advertisement")
 public class Advertisement {
 
     @Id
@@ -41,8 +41,8 @@ public class Advertisement {
     private Date dateOfAddition;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "company_id")
+    private Company company;
 
     @ManyToMany(cascade =  {
             CascadeType.DETACH,

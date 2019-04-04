@@ -36,19 +36,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .dataSource(ds).passwordEncoder(bcp);
     }
 
-    /*protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception {
         http
                 .httpBasic()
                 .and()
                 .authorizeRequests()
-                //.antMatchers("/addUser").permitAll()
+                .antMatchers("/addUser").permitAll()
+                .antMatchers("/addCompany").permitAll()
                // .antMatchers("/addUser1").permitAll()
                // .antMatchers("/add").permitAll()
                // .antMatchers("/users").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated();
         http.csrf().disable();
     }
-*/
     public void configure(WebSecurity webSec) throws Exception {
         webSec.ignoring()
                 .antMatchers("/resources/**", "/statics/**", "/css/**", "/js/**", "/images/**", "/incl/**");

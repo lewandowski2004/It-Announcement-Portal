@@ -1,5 +1,6 @@
 package radoslawlewandowski.portal.Service;
 
+import org.glassfish.jersey.internal.guava.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -7,10 +8,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import radoslawlewandowski.portal.DAO.RoleRepository;
 import radoslawlewandowski.portal.DAO.UserRepository;
 import radoslawlewandowski.portal.DTO.UserDto;
 import radoslawlewandowski.portal.DTO.UserDtoToSave;
 import radoslawlewandowski.portal.Model.Advertisement;
+import radoslawlewandowski.portal.Model.Role;
 import radoslawlewandowski.portal.Model.User;
 
 import javax.transaction.Transactional;
@@ -22,6 +25,9 @@ public class UserService {
 
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private RoleRepository roleRepository;
+
 
     @Autowired
     private UserRepository userRepository;
@@ -30,12 +36,13 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void saveUserDto(UserDtoToSave userDto) {
+        Role role = roleRepository.findByRole("ROLE_USER");
         User user = User.builder()
                 .name(userDto.getName())
                 .lastName(userDto.getLastName())
                 .email(userDto.getEmail())
                 .password(bCryptPasswordEncoder.encode(userDto.getPassword()))
-                .roles(roleService.findByIdIn(Arrays.asList(1)))
+                .roles(new HashSet<Role>(Arrays.asList(role)))
                 .active(1)
                 .build();
 
@@ -48,7 +55,7 @@ public class UserService {
         userRepository.delete(user);
     }
 
-    public UserDto getLoggedEmployeeDto() {
+    public UserDto getLoggedUserDto() {
         String username = null;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if(!(auth instanceof AnonymousAuthenticationToken)) {
@@ -58,7 +65,7 @@ public class UserService {
         return userDto;
     }
 
-    public User getLoggedEmployee() {
+    public User getLoggedUser() {
         String username = null;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if(!(auth instanceof AnonymousAuthenticationToken)) {

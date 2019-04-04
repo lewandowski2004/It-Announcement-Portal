@@ -14,7 +14,7 @@ import java.util.UUID;
 public interface AdvertisementRepository extends JpaRepository<Advertisement, Integer> {
 
     Advertisement findById(long id);
-    List<Advertisement> findAdvertisementsByUser_Id(UUID userId);
+    //List<Advertisement> findAdvertisementsByUser_Id(UUID userId);
     List<Advertisement> findAllByOrderByDateOfAdditionDesc();
 
     @Query(value = "SELECT * FROM advertisement " +
