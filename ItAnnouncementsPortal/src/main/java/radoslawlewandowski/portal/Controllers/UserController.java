@@ -21,7 +21,6 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/user/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     UserDto getUser(@PathVariable UUID id) {
         UserDto userDto = userService.findById(id);
         if (userDto == null)
@@ -29,8 +28,8 @@ public class UserController {
         return userDto;
     }
 
-    @PostMapping("/addUser")
-    void saveUser(@Valid @RequestBody UserDtoToSave newUser) {
+    @PostMapping("/registerUser")
+    void registerUser(@Valid @RequestBody UserDtoToSave newUser) {
         userService.saveUserDto(newUser);
     }
 

@@ -52,6 +52,14 @@ public class Advertisement {
     @JoinTable(name = "advertisement_programming_language", joinColumns = @JoinColumn(name = "advertisement_id"), inverseJoinColumns = @JoinColumn(name = "programming_language_id"))
     private List<ProgrammingLanguage> programmingLanguages ;
 
+    @ManyToMany(cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST})
+    @JoinTable(name = "advertisement_applied_user", joinColumns = @JoinColumn(name = "advertisement_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<User> users;
+
     @Enumerated(EnumType.STRING)
     private ExperienceLevel experienceLevel;
 

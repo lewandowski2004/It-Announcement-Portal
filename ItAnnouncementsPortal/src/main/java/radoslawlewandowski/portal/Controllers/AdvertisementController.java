@@ -3,12 +3,10 @@ package radoslawlewandowski.portal.Controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import radoslawlewandowski.portal.DTO.AdvertisementDto;
-import radoslawlewandowski.portal.DTO.AdvertisementDtoToSave;
-import radoslawlewandowski.portal.DTO.ExperienceLevelDto;
-import radoslawlewandowski.portal.DTO.UserDto;
+import radoslawlewandowski.portal.DTO.*;
 import radoslawlewandowski.portal.Exceptions.AdvertisementNotFoundException;
 import radoslawlewandowski.portal.Service.AdvertisementService;
+import radoslawlewandowski.portal.Service.CompanyService;
 import radoslawlewandowski.portal.Service.UserService;
 
 
@@ -23,11 +21,20 @@ public class AdvertisementController {
     private AdvertisementService advertisementService;
 
     @Autowired
+    private CompanyService companyService;
+
+    @Autowired
     private UserService userService;
 
     @GetMapping("/advertisements")
     List<AdvertisementDto> allAdvertisements() {
         return advertisementService.findAllAdvertisementDto();
+    }
+
+    @GetMapping("/advertisementsByCompany")
+    List<AdvertisementDto> alladvertisementsByCompany() {
+        CompanyDto companyDto = companyService.getLoggedCompanyDto();
+        return advertisementService.findAllAdvertisementsByCompany_Id(companyDto.getId());
     }
 
     /*
@@ -85,7 +92,7 @@ public class AdvertisementController {
     }
 
     @PostMapping("/addAdvertisement")
-    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_COMPANY')")
     public void saveAdvertisment(
             @Valid @RequestBody AdvertisementDtoToSave newAdvertisement) {
         List<Integer> list = new ArrayList<>();

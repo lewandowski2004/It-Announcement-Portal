@@ -45,9 +45,7 @@ public class CompanyDto {
 
     private int nrRoli;
 
-    private Set<Advertisement> advertisements;
-
-    private Set<User> users;
+    private Set<AdvertisementDto> advertisements;
 
     private String newPassword;
 

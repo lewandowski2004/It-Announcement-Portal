@@ -26,7 +26,7 @@ public class AdvertisementService {
     private ExperienceLevelService experienceLevelService;
 
     @Autowired
-    private UserService userService;
+    private CompanyService companyService;
 
     public void saveAdvertisementDto(AdvertisementDtoToSave saveAdvertisementDto) {
         Advertisement advertisement = Advertisement.builder()
@@ -38,7 +38,7 @@ public class AdvertisementService {
                 .dateOfAddition(new Date())
                 .programmingLanguages(programmingLanguageService.findByIdIn(saveAdvertisementDto.getProgrammingLanguages()))
                 .experienceLevel(experienceLevelService.getExperienceLevel(saveAdvertisementDto.getExperienceLevel()))
-               // .user(userService.getLoggedEmployee())
+                .company(companyService.getLoggedCompany())
                 .build();
 
         advertisementRepository.save(advertisement);
@@ -53,13 +53,17 @@ public class AdvertisementService {
         return findAllAdvertisementDto(advertisementRepository.findAdvertisementsByUser_Id(id));
     }*/
 
-    @PreAuthorize("#advertisement.user.email == authentication.name or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("#advertisement.company.email == authentication.name or hasRole('ROLE_ADMIN')")
     public void deleteAdvertisementById(AdvertisementDto advertisement){
         advertisementRepository.delete(getAdvertisement(advertisement));
     }
 
     public List<AdvertisementDto> findAllAdvertisementDto() {
         return findAllAdvertisementDto(advertisementRepository.findAllByOrderByDateOfAdditionDesc());
+    }
+
+    public List<AdvertisementDto> findAllAdvertisementsByCompany_Id(UUID companyId){
+        return findAllAdvertisementDto(advertisementRepository.findAdvertisementsByCompany_Id(companyId));
     }
 
     public List<AdvertisementDto> findAllAdvertisementsDtoByProgrammingLanguageAndCityAndExpLevel(String city, String programmingLanguage, String expLevel) {
@@ -89,7 +93,7 @@ public class AdvertisementService {
                 .dateOfAddition(advertisementDto.getDateOfAddition())
                 .programmingLanguages(advertisementDto.getProgrammingLanguages())
                 .experienceLevel(experienceLevelService.getExperienceLevel(advertisementDto.getExperienceLevel()))
-               // .user(userService.getUser(advertisementDto.getUser()))
+               // .company(companyService.getLoggedCompany())
                 .build();
     }
 
@@ -104,7 +108,7 @@ public class AdvertisementService {
                 .dateOfAddition(advertisement.getDateOfAddition())
                 .programmingLanguages(advertisement.getProgrammingLanguages())
                 .experienceLevel(experienceLevelService.getExperienceLevelDto(advertisement.getExperienceLevel()))
-               // .user(userService.getUserDto(advertisement.getUser()))
+               // .company(companyService.getLoggedCompany())
                 .build();
     }
 

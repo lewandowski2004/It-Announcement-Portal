@@ -29,7 +29,7 @@ public class AdvertisementDtoToSave {
 
     private Date dateOfAddition;
 
-    private UserDto user;
+    private CompanyDto company;
 
     private List<Integer> programmingLanguages ;
 

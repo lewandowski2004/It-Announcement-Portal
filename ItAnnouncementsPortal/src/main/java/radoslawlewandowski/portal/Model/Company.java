@@ -62,14 +62,6 @@ public class Company {
     @OneToMany(mappedBy = "company", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Set<Advertisement> advertisements;
 
-    @ManyToMany(cascade = {
-            CascadeType.DETACH,
-            CascadeType.MERGE,
-            CascadeType.REFRESH,
-            CascadeType.PERSIST})
-    @JoinTable(name = "company_applied_user", joinColumns = @JoinColumn(name = "company_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> users;
-
     @Transient
     private String newPassword;
 
