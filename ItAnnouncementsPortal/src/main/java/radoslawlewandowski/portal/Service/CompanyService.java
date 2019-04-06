@@ -9,8 +9,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import radoslawlewandowski.portal.DAO.CompanyRepository;
 import radoslawlewandowski.portal.DAO.RoleRepository;
+import radoslawlewandowski.portal.DTO.AddressDto;
 import radoslawlewandowski.portal.DTO.CompanyDto;
 import radoslawlewandowski.portal.DTO.CompanyDtoToSave;
+import radoslawlewandowski.portal.Model.Address;
 import radoslawlewandowski.portal.Model.Company;
 import radoslawlewandowski.portal.Model.Role;
 
@@ -131,6 +133,7 @@ public class CompanyService {
 
     public Company getCompany(CompanyDto companyDto) {
         return  Company.builder()
+                .id(companyDto.getId())
                 .name(companyDto.getName())
                 .description(companyDto.getDescription())
                 .phoneNumber(companyDto.getPhone_number())
@@ -145,6 +148,7 @@ public class CompanyService {
 
     public CompanyDto getCompanyDto(Company company) {
         return CompanyDto.builder()
+                .id(company.getId())
                 .name(company.getName())
                 .description(company.getDescription())
                 .phone_number(company.getPhoneNumber())

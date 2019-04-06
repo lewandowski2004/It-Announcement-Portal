@@ -18,12 +18,6 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
-    @GetMapping("/allCompany")
-    @PreAuthorize("hasRole('ROLE_COMPANY')")
-    List<CompanyDto> all() {
-        return companyService.findAllCompanyDto();
-    }
-
     @GetMapping("/company/{id}")
     //@PreAuthorize("hasRole('ROLE_COMPANY')")
     CompanyDto getCompany(@PathVariable UUID id) {
@@ -34,21 +28,8 @@ public class CompanyController {
     }
 
     @PostMapping("/addCompany")
-    void saveCompany(@Valid @RequestBody CompanyDtoToSave newCompany) {
-        AddressDto addressDto = new AddressDto();
-        addressDto.setAddressLine1("Ciółkówko");
-        addressDto.setCity("Płock");
-        addressDto.setCountry("Polska");
-        addressDto.setZipCode("09-400");
-        newCompany.setAddressDto(addressDto);
+    void saveCompany(@Valid @RequestBody CompanyDtoToSave newCompany ) {
         companyService.saveCompanyDto(newCompany);
-    }
-
-    @PostMapping("/deleteCompany/{id}")
-    //@PreAuthorize("hasRole('ROLE_COMPANY')")
-    public void deleteCompany(
-            @PathVariable UUID id) {
-        companyService.deleteCompanyById(id);
     }
 
 }

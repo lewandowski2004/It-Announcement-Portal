@@ -17,18 +17,18 @@ import javax.validation.constraints.Size;
 @Embeddable
 public class AddressDto {
 
-    @NotEmpty(message = "Pole nie może być puste")
+   // @NotEmpty(message = "Pole nie może być puste")
     private String addressLine1;
 
     private String addressLine2;
 
-    @NotEmpty(message = "Pole nie może być puste")
+   // @NotEmpty(message = "Pole nie może być puste")
     private String city;
 
-    @NotEmpty(message = "Pole nie może być puste")
+   // @NotEmpty(message = "Pole nie może być puste")
     private String country;
 
-    @NotEmpty(message = "Pole nie może być puste")
+    //@NotEmpty(message = "Pole nie może być puste")
     private String zipCode;
 
     public AddressDto() {

@@ -36,7 +36,7 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void saveUserDto(UserDtoToSave userDto) {
-        Role role = roleRepository.findByRole("ROLE_USER");
+        Role role = roleRepository.findByRole("ROLE_ADMIN");
         User user = User.builder()
                 .name(userDto.getName())
                 .lastName(userDto.getLastName())

@@ -1,11 +1,14 @@
 package radoslawlewandowski.portal.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import radoslawlewandowski.portal.DAO.UserRepository;
 import radoslawlewandowski.portal.DTO.UserDto;
 import radoslawlewandowski.portal.DTO.UserDtoToSave;
 import radoslawlewandowski.portal.Exceptions.UserNotFoundException;
+import radoslawlewandowski.portal.Model.User;
 import radoslawlewandowski.portal.Service.UserService;
 
 import javax.validation.Valid;
@@ -16,12 +19,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @GetMapping("/users")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    List<UserDto> all() {
-        return userService.findAllUsersDto();
-    }
 
     @GetMapping("/user/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -35,13 +32,6 @@ public class UserController {
     @PostMapping("/addUser")
     void saveUser(@Valid @RequestBody UserDtoToSave newUser) {
         userService.saveUserDto(newUser);
-    }
-
-    @PostMapping("/deleteUser/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public void deleteUser(
-            @PathVariable UUID id) {
-        userService.deleteUserById(id);
     }
 
 }
