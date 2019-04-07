@@ -97,7 +97,9 @@ public class AdvertisementController {
             @Valid @RequestBody AdvertisementDtoToSave newAdvertisement) {
         List<Integer> list = new ArrayList<>();
         list.add(1);
-        newAdvertisement.setExperienceLevel(ExperienceLevelDto.JUNIOR);
+        list.add(2);
+
+        newAdvertisement.setExperienceLevel(LevelDto.JUNIOR);
         newAdvertisement.setProgrammingLanguages(list);
         advertisementService.saveAdvertisementDto(newAdvertisement);
     }

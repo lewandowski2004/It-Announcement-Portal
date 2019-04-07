@@ -73,4 +73,12 @@ public class SkillServise {
         }
         return skills;
     }
+
+    public Set<SkillDto> getSkillsDto(Set<Skill> skills) {
+        Set<SkillDto> skillsDto = new HashSet<>();
+        for (Skill skill : skills) {
+            skillsDto.add(getSkillDto(skill));
+        }
+        return skillsDto;
+    }
 }

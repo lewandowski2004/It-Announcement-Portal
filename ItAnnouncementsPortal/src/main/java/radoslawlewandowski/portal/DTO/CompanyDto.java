@@ -29,7 +29,7 @@ public class CompanyDto {
 
     private String description;
 
-    private String phone_number;
+    private String phoneNumber;
 
     private String email;
 

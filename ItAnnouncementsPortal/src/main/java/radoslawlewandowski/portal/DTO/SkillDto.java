@@ -5,7 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import radoslawlewandowski.portal.Model.Advertisement;
-import radoslawlewandowski.portal.Model.ExperienceLevel;
+
+import java.util.Set;
 
 @AllArgsConstructor
 @Builder
@@ -17,9 +18,7 @@ public class SkillDto {
 
     private String name;
 
-    private ExperienceLevel experienceLevel;
-
-    private Advertisement advertisement;
+    private Set<AdvertisementDto> advertisements;
 
     protected SkillDto(){}
 }

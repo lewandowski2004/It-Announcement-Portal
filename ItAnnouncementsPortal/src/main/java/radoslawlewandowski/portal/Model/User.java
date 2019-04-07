@@ -46,6 +46,14 @@ public class User {
             CascadeType.DETACH,
             CascadeType.MERGE,
             CascadeType.REFRESH,
+            CascadeType.PERSIST},
+            mappedBy = "users")
+    private Set<Advertisement> advertisements;
+
+    @ManyToMany(cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
             CascadeType.PERSIST})
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;

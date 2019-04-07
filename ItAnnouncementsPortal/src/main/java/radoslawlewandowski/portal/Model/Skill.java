@@ -3,6 +3,7 @@ package radoslawlewandowski.portal.Model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,5 +21,13 @@ public class Skill {
 
     @Column(name = "name")
     private String name;
+
+    @ManyToMany(cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST},
+            mappedBy = "skills")
+    private Set<Advertisement> advertisements;
 
 }

@@ -9,7 +9,9 @@ import radoslawlewandowski.portal.Model.ProgrammingLanguage;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -56,6 +58,22 @@ public class ProgrammingLanguageService {
                 .id(programmingLanguageDto.getId())
                 .name(programmingLanguageDto.getName())
                 .build();
+    }
+
+    public List<ProgrammingLanguage> getProgrammingLanguages(List<ProgrammingLanguageDto> listProgrammingLanguageDto) {
+        List<ProgrammingLanguage> programmingLanguage = new ArrayList<>();
+        for (ProgrammingLanguageDto programmingLanguageDto : listProgrammingLanguageDto) {
+            programmingLanguage.add(getProgrammingLanguage(programmingLanguageDto));
+        }
+        return programmingLanguage;
+    }
+
+    public List<ProgrammingLanguageDto> getProgrammingLanguagesDto(List<ProgrammingLanguage> listProgrammingLanguage) {
+        List<ProgrammingLanguageDto> programmingLanguageDto = new ArrayList<>();
+        for (ProgrammingLanguage programmingLanguage : listProgrammingLanguage) {
+            programmingLanguageDto.add(getProgrammingLanguageDto(programmingLanguage));
+        }
+        return programmingLanguageDto;
     }
 
     public List<ProgrammingLanguage> getAllProgrammingLanguage(List<ProgrammingLanguageDto> programmingLanguageDtos) {

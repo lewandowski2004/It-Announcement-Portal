@@ -60,11 +60,15 @@ public class Advertisement {
     @JoinTable(name = "advertisement_applied_user", joinColumns = @JoinColumn(name = "advertisement_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> users;
 
+    @Column(name= "experience_level")
     @Enumerated(EnumType.STRING)
-    private ExperienceLevel experienceLevel;
+    private Level experienceLevel;
 
-   /* @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST})
     @JoinTable(name = "advertisement_skill", joinColumns = @JoinColumn(name = "advertisement_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
     private Set<Skill> skills;
-*/
 }

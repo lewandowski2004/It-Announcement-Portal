@@ -4,6 +4,6 @@ import lombok.*;
 
 
 @Getter
-public enum ExperienceLevelDto {
+public enum LevelDto {
     JUNIOR, MID, SENIOR
 }

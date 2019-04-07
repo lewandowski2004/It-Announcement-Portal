@@ -23,7 +23,10 @@ public class AdvertisementService {
     private ProgrammingLanguageService programmingLanguageService;
 
     @Autowired
-    private ExperienceLevelService experienceLevelService;
+    private LevelService levelService;
+
+    @Autowired
+    private SkillServise skillServise;
 
     @Autowired
     private CompanyService companyService;
@@ -31,14 +34,15 @@ public class AdvertisementService {
     public void saveAdvertisementDto(AdvertisementDtoToSave saveAdvertisementDto) {
         Advertisement advertisement = Advertisement.builder()
                 .title(saveAdvertisementDto.getTitle())
-                .companyName(saveAdvertisementDto.getCompanyName())
+                .companyName(companyService.getLoggedCompany().getName())
                 .salary(saveAdvertisementDto.getSalary())
                 .city(saveAdvertisementDto.getCity())
                 .description(saveAdvertisementDto.getDescription())
                 .dateOfAddition(new Date())
                 .programmingLanguages(programmingLanguageService.findByIdIn(saveAdvertisementDto.getProgrammingLanguages()))
-                .experienceLevel(experienceLevelService.getExperienceLevel(saveAdvertisementDto.getExperienceLevel()))
+                .experienceLevel(levelService.getLevel(saveAdvertisementDto.getExperienceLevel()))
                 .company(companyService.getLoggedCompany())
+                //.skills(skillServise.getSkills(saveAdvertisementDto.getSkills()))
                 .build();
 
         advertisementRepository.save(advertisement);
@@ -91,9 +95,10 @@ public class AdvertisementService {
                 .city(advertisementDto.getCity())
                 .description(advertisementDto.getDescription())
                 .dateOfAddition(advertisementDto.getDateOfAddition())
-                .programmingLanguages(advertisementDto.getProgrammingLanguages())
-                .experienceLevel(experienceLevelService.getExperienceLevel(advertisementDto.getExperienceLevel()))
-               // .company(companyService.getLoggedCompany())
+                .programmingLanguages(programmingLanguageService.getProgrammingLanguages(advertisementDto.getProgrammingLanguages()))
+                .experienceLevel(levelService.getLevel(advertisementDto.getExperienceLevel()))
+                .company(companyService.getCompany(advertisementDto.getCompany()))
+                //.skills(skillServise.getSkills(advertisementDto.getSkills()))
                 .build();
     }
 
@@ -106,9 +111,10 @@ public class AdvertisementService {
                 .city(advertisement.getCity())
                 .description(advertisement.getDescription())
                 .dateOfAddition(advertisement.getDateOfAddition())
-                .programmingLanguages(advertisement.getProgrammingLanguages())
-                .experienceLevel(experienceLevelService.getExperienceLevelDto(advertisement.getExperienceLevel()))
-               // .company(companyService.getLoggedCompany())
+                .programmingLanguages(programmingLanguageService.getProgrammingLanguagesDto(advertisement.getProgrammingLanguages()))
+                .experienceLevel(levelService.getLevelDto(advertisement.getExperienceLevel()))
+                .company(companyService.getCompanyDto(advertisement.getCompany()))
+                //.skills(skillServise.getSkillsDto(advertisement.getSkills()))
                 .build();
     }
 

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import radoslawlewandowski.portal.Model.ProgrammingLanguage;
+import radoslawlewandowski.portal.Model.Skill;
 import radoslawlewandowski.portal.Model.User;
 
 import java.util.Date;
@@ -34,11 +35,13 @@ public class AdvertisementDto {
 
     private CompanyDto company;
 
+    private List<ProgrammingLanguageDto> programmingLanguages ;
+
     private Set<UserDto> users;
 
-    private List<ProgrammingLanguage> programmingLanguages ;
+    private LevelDto experienceLevel;
 
-    private ExperienceLevelDto experienceLevel;
+    private Set<SkillDto> skills;
 
     protected AdvertisementDto(){}
 }

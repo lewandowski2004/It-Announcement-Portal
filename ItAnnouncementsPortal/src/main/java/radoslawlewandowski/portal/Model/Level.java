@@ -1,5 +1,5 @@
 package radoslawlewandowski.portal.Model;
 
-public enum ExperienceLevel {
+public enum Level {
     JUNIOR, MID, SENIOR
 }

@@ -20,7 +20,4 @@ public class ProgrammingLanguage {
 
     @Column(name = "name")
     private String name;
-
-    /*//@OneToOne(mappedBy = "programmingLanguage")
-    private Advertisement advertisement;*/
 }

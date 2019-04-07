@@ -41,6 +41,8 @@ public class UserDto {
 
     private int active;
 
+    private Set<AdvertisementDto> advertisements;
+
     private Set<RoleDto> roles;
 
     private int nrRoli;

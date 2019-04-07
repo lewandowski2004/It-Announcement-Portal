@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import radoslawlewandowski.portal.Model.Skill;
 import radoslawlewandowski.portal.Model.User;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @Builder
@@ -33,7 +35,9 @@ public class AdvertisementDtoToSave {
 
     private List<Integer> programmingLanguages ;
 
-    private ExperienceLevelDto experienceLevel;
+    private LevelDto experienceLevel;
+
+    private Set<SkillDto> skills;
 
     protected AdvertisementDtoToSave(){}
 }
