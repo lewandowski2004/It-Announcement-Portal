@@ -82,7 +82,7 @@ public class AdvertisementController {
         return advertisementService.findByUserId(userDto.getId());
     }
 */
-    @GetMapping("/advertisement/{id}")
+    @GetMapping("/advertisements/{id}")
     AdvertisementDto getAdvertisement(
             @PathVariable Long id) {
         AdvertisementDto advertisementDto = advertisementService.findById(id);
@@ -91,7 +91,7 @@ public class AdvertisementController {
         return advertisementDto;
     }
 
-    @PostMapping("/addAdvertisement")
+    @PostMapping("/add/advertisements")
     @PreAuthorize("hasRole('ROLE_COMPANY')")
     public void saveAdvertisment(
             @Valid @RequestBody AdvertisementDtoToSave newAdvertisement) {
@@ -104,7 +104,7 @@ public class AdvertisementController {
         advertisementService.saveAdvertisementDto(newAdvertisement);
     }
 
-    @PostMapping("/deleteAdvertisement/{id}")
+    @PostMapping("/delete/advertisements/{id}")
     public void deleteAdvertisement(
             @PathVariable Long id) {
         AdvertisementDto advertisement = advertisementService.findById(id);

@@ -30,13 +30,13 @@ public class ProgrammingLanguageController {
         return programmingLanguageDto;
     }
 
-    @PostMapping("/addProgrammingLanguage")
+    @PostMapping("/add/ProgrammingLanguage")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void saveProgrammingLanguage(@Valid @RequestBody ProgrammingLanguageDto newProgrammingLanguage) {
         programmingLanguageService.saveProgrammingLanguageDto(newProgrammingLanguage);
     }
 
-    @PostMapping("/deleteProgrammingLanguage/{id}")
+    @PostMapping("/delete/ProgrammingLanguage/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteProgrammingLanguage(
             @PathVariable int id) {

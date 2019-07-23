@@ -18,12 +18,12 @@ public class SkillController {
     List<SkillDto> all() {
         return skillServise.findAllSkillsDto();
     }
-    @GetMapping("/skill/{id}")
+    @GetMapping("/skills/{id}")
     SkillDto getSkills(@PathVariable int id) {
         return skillServise.findById(id);
     }
 
-    @PostMapping("/addSkill")
+    @PostMapping("/add/Skills")
     public void saveSkill(@Valid @RequestBody SkillDto newSkill) {
         skillServise.saveSkillDto(newSkill);
     }

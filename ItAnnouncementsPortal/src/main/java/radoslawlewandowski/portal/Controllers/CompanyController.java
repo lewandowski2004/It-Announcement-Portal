@@ -27,7 +27,7 @@ public class CompanyController {
         return companyDto;
     }
 
-    @PostMapping("/registerCompany")
+    @PostMapping("/add/company")
     void registerCompany(@Valid @RequestBody CompanyDtoToSave newCompany ) {
         companyService.saveCompanyDto(newCompany);
     }

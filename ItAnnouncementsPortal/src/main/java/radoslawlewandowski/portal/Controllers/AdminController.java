@@ -29,20 +29,20 @@ public class AdminController {
         return userService.findAllUsersDto();
     }
 
-    @PostMapping("/deleteUser/{id}")
+    @PostMapping("/delete/users/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteUser(
             @PathVariable UUID id) {
         userService.deleteUserById(id);
     }
 
-    @GetMapping("/allCompany")
+    @GetMapping("/company")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     List<CompanyDto> allCompany() {
         return companyService.findAllCompanyDto();
     }
 
-    @PostMapping("/deleteCompany/{id}")
+    @PostMapping("/delete/company/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteCompany(
             @PathVariable UUID id) {

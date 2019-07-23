@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/users/{id}")
     UserDto getUser(@PathVariable UUID id) {
         UserDto userDto = userService.findById(id);
         if (userDto == null)
@@ -28,7 +28,7 @@ public class UserController {
         return userDto;
     }
 
-    @PostMapping("/registerUser")
+    @PostMapping("/add/users")
     void registerUser(@Valid @RequestBody UserDtoToSave newUser) {
         userService.saveUserDto(newUser);
     }
